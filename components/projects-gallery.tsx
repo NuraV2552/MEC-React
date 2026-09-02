@@ -9,61 +9,21 @@ const categories = ["All", "Residential", "Commercial", "Industrial", "Hospitali
 const projects = [
   {
     id: 1,
-    title: "Marina ResidencesXXX",
+    title: "Gold Crest Residences",
     category: "Residential",
     location: "Dubai Marina",
     image: "/GOLD_CREST_VIEW.png",
   },
   {
     id: 2,
-    title: "Business Bay Tower Kekw",
+    title: "Business Bay Tower",
     category: "Commercial",
     location: "Business Bay, Dubai",
-    image: "modern commercial office tower Dubai Business Bay glass facade",
-  },
-  {
-    id: 3,
-    title: "Al Quoz Industrial Complex",
-    category: "Industrial",
-    location: "Al Quoz, Dubai",
-    image: "industrial warehouse facility modern Dubai Al Quoz",
-  },
-  {
-    id: 4,
-    title: "Palm Beach Resort",
-    category: "Hospitality",
-    location: "Palm Jumeirah",
-    image: "luxury beach resort hotel Palm Jumeirah Dubai pool ocean",
-  },
-  {
-    id: 5,
-    title: "JVC Apartment Complex",
-    category: "Residential",
-    location: "Jumeirah Village Circle",
-    image: "modern apartment building residential complex Dubai JVC",
-  },
-  {
-    id: 6,
-    title: "Downtown Office Park",
-    category: "Commercial",
-    location: "Downtown Dubai",
-    image: "modern office park building Downtown Dubai corporate",
-  },
-  {
-    id: 7,
-    title: "Jebel Ali Warehouse",
-    category: "Industrial",
-    location: "Jebel Ali",
-    image: "logistics warehouse industrial Jebel Ali free zone Dubai",
-  },
-  {
-    id: 8,
-    title: "Creek Boutique Hotel",
-    category: "Hospitality",
-    location: "Dubai Creek",
-    image: "boutique hotel Dubai Creek heritage area modern design",
-  },
+    image: "/Bolton_Uni.png",
+  }
 ]
+
+const FALLBACK_IMAGE = "/placeholder.jpg"
 
 export function ProjectsGallery() {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -99,10 +59,16 @@ export function ProjectsGallery() {
                 transition={{ duration: 0.3 }}
                 className="group cursor-pointer"
               >
-                <div className="relative aspect-[4/3] rounded-xl overflow-hidden">
+                <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-muted">
                   <img
-                    src={`/.jpg?height=450&width=600&query=${encodeURIComponent(project.image)}`}
+                    src={project.image}
                     alt={project.title}
+                    loading="lazy"
+                    onError={(e) => {
+                      const img = e.currentTarget
+                      if (img.src.endsWith(FALLBACK_IMAGE)) return
+                      img.src = FALLBACK_IMAGE
+                    }}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -122,3 +88,4 @@ export function ProjectsGallery() {
     </section>
   )
 }
+
