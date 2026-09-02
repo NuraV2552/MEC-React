@@ -9,14 +9,14 @@ const categories = ["All", "Residential", "Commercial", "Industrial", "Hospitali
 const projects = [
   {
     id: 1,
-    title: "Marina Residences",
+    title: "Marina ResidencesXXX",
     category: "Residential",
     location: "Dubai Marina",
-    image: "luxury residential tower Dubai Marina waterfront modern architecture",
+    image: "/GOLD_CREST_VIEW.png",
   },
   {
     id: 2,
-    title: "Business Bay Tower",
+    title: "Business Bay Tower Kekw",
     category: "Commercial",
     location: "Business Bay, Dubai",
     image: "modern commercial office tower Dubai Business Bay glass facade",
