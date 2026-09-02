@@ -9,18 +9,52 @@ const categories = ["All", "Residential", "Commercial", "Industrial", "Hospitali
 const projects = [
   {
     id: 1,
-    title: "Gold Crest Residences",
+    title: "Gold Crest Tower",
     category: "Residential",
     location: "Dubai Marina",
     image: "/GOLD_CREST_VIEW.png",
+    description: "Residential building having 40 floors with good and prestigious creature on exterior ie fully by steel cladding.",
   },
   {
     id: 2,
-    title: "Business Bay Tower",
+    title: "Bolton University",
     category: "Commercial",
-    location: "Business Bay, Dubai",
+    location: "RAK Free Trade Zone Campus",
     image: "/Bolton_Uni.png",
-  }
+    description: "Al Tareeqah Management in RAKIA campus and Proposed Bolton University in RAK Free Trade Zone Campus.",
+  },
+  {
+    id: 3,
+    title: "G+9 Building",
+    category: "Commercial",
+    location: "RAK Free Trade Zone Campus",
+    image: "/G+9_Building.png",
+    description: "An office building with inviting social spaces, which puts a positive impact on the overall working environment in terms of profitability and performance.",
+  },
+  {
+    id: 4,
+    title: "G+3P+15 Building",
+    category: "Residential",
+    location: "RAK Free Trade Zone Campus",
+    image: "/G+3P+15_Building.png",
+    description: "Contemporary architecture with a dynamic environment for residential building.",
+  },
+  {
+    id: 5,
+    title: "JK CEMENT WORKS",
+    category: "Industrial",
+    location: "RAK Free Trade Zone Campus",
+    image: "/JK_CEMENT_WORKS.png",
+    description: "Grey and White cement manufacturing unit in Fujairah. Total built-up area is ~53,000m2.",
+  },
+  {
+    id: 6,
+    title: "BMJ Industries",
+    category: "Industrial",
+    location: "RAK Free Trade Zone Campus",
+    image: "/BMJ_Industries.jpg",
+    description: "Tobacco manufacturing plant on a 106,000 sqm plot with 49,000 sqm of built-up area and an 8 MW connected power supply.",
+  },
 ]
 
 const FALLBACK_IMAGE = "/placeholder.jpg"
@@ -47,17 +81,17 @@ export function ProjectsGallery() {
           ))}
         </div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.div
                 key={project.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
+                exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="group cursor-pointer"
+                className="group flex flex-col"
               >
                 <div className="relative aspect-[4/3] rounded-xl overflow-hidden bg-muted">
                   <img
@@ -69,16 +103,19 @@ export function ProjectsGallery() {
                       if (img.src.endsWith(FALLBACK_IMAGE)) return
                       img.src = FALLBACK_IMAGE
                     }}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                    <span className="inline-block px-3 py-1 text-xs font-medium bg-accent text-accent-foreground rounded-full mb-2">
-                      {project.category}
-                    </span>
-                    <h3 className="text-xl font-bold text-primary-foreground">{project.title}</h3>
-                    <p className="text-sm text-primary-foreground/80 mt-1">{project.location}</p>
-                  </div>
+                </div>
+
+                <div className="mt-5 text-center">
+                  <p className="text-xs font-medium uppercase tracking-wider text-accent">
+                    {project.category}
+                  </p>
+                  <h3 className="mt-2 text-xl font-bold text-foreground">{project.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{project.location}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground max-w-sm mx-auto">
+                    {project.description}
+                  </p>
                 </div>
               </motion.div>
             ))}
@@ -88,4 +125,5 @@ export function ProjectsGallery() {
     </section>
   )
 }
+
 
